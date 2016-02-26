@@ -5,6 +5,6 @@ attr_reader :response
   end
 
   def recipe_search
-    @response["businesses"][0]["location"]["coordinate"]["latitude"]
+    @response 
   end
 end
