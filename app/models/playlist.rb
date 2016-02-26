@@ -6,10 +6,28 @@ class Playlist
     # @search_term = HTTParty.get("https://api.spotify.com/v1/search?q=%22#{search_term}%22&type=playlist")
   end
 
-  def random_playlist
+
+  def get_playlists
     playlists = @search_term["playlists"]["items"]
-    playlists.map{|a| a["external_urls"]["spotify"]}.sample
+    # playlists.map{|a| a["external_urls"]["spotify"]}.sample
   end
+
+  # Would this sort of structure work to filter through the "total" for short or long playlists?
+  def random_playlist(length=nil)
+    get_playlists
+    if length == "short"
+      short_playlists = playlists.select {|a| a["total"] < 100 }
+      short_playlists.sample
+    elsif length == "long"
+      long_playlists = playlists.select {|a| a["total"] > 100 }
+      long_playlists.sample
+    else
+      playlists = @search_term["playlists"]["items"]
+      playlists.map{|a| a["external_urls"]["spotify"]}.sample
+    end
+  end
+
+
 
   # def get_playlist_image
   # end
