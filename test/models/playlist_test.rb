@@ -11,13 +11,14 @@ end
 
 class PlaylistTest < ActiveSupport::TestCase
   test "playlist array contains url" do
-    p = Playlist.new("kpop")
-    assert_equal "http://open.spotify.com/user/spotify/playlist/0GsCJgN24wOrQljPRNtszI", p.playlist_list[3]
+    r = Playlist.new("kpop")
+    q = Playlist.new("kpop")
+    refute r.random_playlist == q.random_playlist
   end
 
-  def test_another_thing
-    #test goes here
-  end
+  # def test_another_thing
+  #   #test goes here
+  # end
 end
 
 
