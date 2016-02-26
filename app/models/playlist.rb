@@ -1,23 +1,19 @@
-require 'json'
+# require 'json'
+require 'httparty'
 class Playlist
   def initialize(search_term)
-    @search_term = JSON.parse(File.read("playlist.json"))
-    # @search_term = HTTParty.get("https://api.spotify.com/v1/search?q=%22#{search_term}%22&type=playlist")
-  end
-
-  def playlist_list
-    playlists = @search_term["playlists"]["items"]
-    playlist_array = []
-    playlists.each do |s|
-      playlist_array << "#{s["external_urls"]["spotify"]}"
-    end
-    playlist_array
+    # @search_term = JSON.parse(File.read("playlist.json"))
+    @search_term = HTTParty.get("https://api.spotify.com/v1/search?q=%22#{search_term}%22&type=playlist")
   end
 
   def random_playlist
-    self.playlist_list.sample
+    playlists = @search_term["playlists"]["items"]
+    playlists.map{|a| a["external_urls"]["spotify"]}.sample
   end
 
   # def get_playlist_image
   # end
 end
+
+# newlist = Playlist.new("kpop")
+# puts newlist.playlist_list
