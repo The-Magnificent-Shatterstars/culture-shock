@@ -1,10 +1,24 @@
-class Recipes
+
+
+class Recipe
 attr_reader :response
-  def initialize(response)
-    @response = response
+  def initialize(search)
+    @search = HTTParty.get("http://food2fork.com/api/search?key=#{ENV{"RECIPE_KEY"}}&q=#{search}")
   end
 
-  def recipe_search
-    @response 
+  def random_recipe
+    r = @search["recipes"].sample
+    result = []
+    result << r["title"]
+    result << r["source_url"]
   end
+
+  def title
+    random_recipe[0]
+  end
+
+  def source
+    random_recipe[1]
+  end
+
 end
