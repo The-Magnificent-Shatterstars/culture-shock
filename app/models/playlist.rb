@@ -17,4 +17,7 @@ class Playlist
   def random_playlist
     self.playlist_list.sample
   end
+
+  # def get_playlist_image
+  # end
 end
