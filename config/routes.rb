@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'recipes_playlists/show'
+
+  get 'recipes_playlists/index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
