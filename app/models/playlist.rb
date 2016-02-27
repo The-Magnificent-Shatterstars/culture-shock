@@ -8,12 +8,16 @@ class Playlist
 
   def random_playlist
     playlists = @search_term["playlists"]["items"]
-    playlists.map{|a| a["external_urls"]["spotify"]}.sample
+    # @selected = playlists.map{|a| a["external_urls"]["spotify"]}.sample
+    @selected = playlists.sample
+    @selected["external_urls"]["spotify"]
   end
 
-  # def get_playlist_image
-  # end
+  def get_playlist_image
+    @selected["images"][0]["url"]
+  end
 end
 
-# newlist = Playlist.new("kpop")
-# puts newlist.playlist_list
+newlist = Playlist.new("kpop")
+puts newlist.random_playlist
+puts newlist.get_playlist_image
