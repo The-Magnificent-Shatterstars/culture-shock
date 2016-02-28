@@ -13,9 +13,9 @@ class Playlist
     playlists = @search_term["playlists"]["items"]
     ids = []
     playlists.each do |r|
-      ids << "#{r["owner"]["id"]}, #{r["id"]}"
+      @ids << "#{r["owner"]["id"]}, #{r["id"]}"
     end
-    ids
+    @ids
     # @selected = playlists.map{|a| a["external_urls"]["spotify"]}.sample
     # @selected = playlists.sample
     # @selected["external_urls"]["spotify"]
@@ -24,10 +24,14 @@ class Playlist
     # playlist = RSpotify::Playlist.find('spotifyphilippines', '6iPgKbb5OdSilOBOKLtY8n')
   end
   #
-  # def tracks
-  #   playlist = RSpotify::Playlist.find('spotifyphilippines', '6iPgKbb5OdSilOBOKLtY8n')
-  #   playlist.tracks
-  # end
+  def tracks
+    @ids.each do |i|
+      var = RSpotify::Playlist.find(i)
+    end
+    puts var
+    # playlist = RSpotify::Playlist.find('spotifyphilippines', '6iPgKbb5OdSilOBOKLtY8n')
+    # playlist.tracks
+  end
 
   # def get_playlist_length
   #   GET https://api.spotify.com/v1/users/{user_id}/playlists/{playlist_id}
@@ -35,6 +39,6 @@ class Playlist
 end
 
 newlist = Playlist.new("kpop")
-p newlist.get_id
+p newlist.tracks
 # p newlist.tracks
 # puts newlist.get_playlist_image
