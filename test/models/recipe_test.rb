@@ -8,17 +8,18 @@ class Recipe
 end
 
 class RecipeTest < ActiveSupport::TestCase
+
+  test "must pass argument in initialize" do
+   assert_raises(ArgumentError) {
+     Recipe.new()
+   }
+ end
+
   test "select a random recipe from the correct genre" do
     a = Recipe.new("Korean")
     b = Recipe.new("Korean")
     refute a.random_recipe == b.random_recipe
   end
 
-  test "show the recipe title" do
-    r = Recipe.new("Korean")
-  end
 
-  test "show the recipe publisher and url" do
-    r = Recipe.new("Korean")
-  end
 end
