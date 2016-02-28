@@ -1,7 +1,7 @@
 class RecipesPlaylistsController < ApplicationController
   def show
     playlist = Playlist.new(params["genre"])
-    render json: playlist.random_playlist
+    render json: playlist.tracks
 
     # recipe = Recipe.new(params["genre"])
     # render json: recipe.random_recipe

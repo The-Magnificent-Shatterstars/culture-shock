@@ -9,18 +9,24 @@ class Playlist
     @search_term = HTTParty.get("https://api.spotify.com/v1/search?q=%22#{search_term}%22&type=playlist")
   end
 
-  def random_playlist
-    # playlists = @search_term["playlists"]["items"]
-    # # @selected = playlists.map{|a| a["external_urls"]["spotify"]}.sample
+  def get_id
+    playlists = @search_term["playlists"]["items"]
+    ids = []
+    playlists.each do |r|
+      ids << "#{r["owner"]["id"]}, #{r["id"]}"
+    end
+    ids
+    # @selected = playlists.map{|a| a["external_urls"]["spotify"]}.sample
     # @selected = playlists.sample
     # @selected["external_urls"]["spotify"]
-    # RSpotify.raw_response = true
-    # RSpotify::Artist.search('Cher')
-    playlist = RSpotify::Playlist.find('spotifyphilippines', '6iPgKbb5OdSilOBOKLtY8n')
+    # # RSpotify.raw_response = true
+    # # RSpotify::Artist.search('Cher')
+    # playlist = RSpotify::Playlist.find('spotifyphilippines', '6iPgKbb5OdSilOBOKLtY8n')
   end
-
-  # def get_playlist_image
-  #   @selected["images"][0]["url"]
+  #
+  # def tracks
+  #   playlist = RSpotify::Playlist.find('spotifyphilippines', '6iPgKbb5OdSilOBOKLtY8n')
+  #   playlist.tracks
   # end
 
   # def get_playlist_length
@@ -29,29 +35,6 @@ class Playlist
 end
 
 newlist = Playlist.new("kpop")
-p newlist.random_playlist
+p newlist.get_id
+# p newlist.tracks
 # puts newlist.get_playlist_image
-
-
-# RSpotify.authenticate("<your_client_id>", "<your_client_secret>")
-#
-# # Now you can access playlists in detail, browse featured content and more
-#
-# wizzler = RSpotify::User.find('wizzler')
-# wizzler.playlists #=> (Playlist array)
-#
-# # Find by id
-# playlist = RSpotify::Playlist.find('wizzler', '00wHcTN0zQiun4xri9pmvX')
-# playlist.name               #=> "Movie Soundtrack Masterpieces"
-# playlist.description        #=> "Iconic soundtracks featured..."
-# playlist.followers['total'] #=> 13
-# playlist.tracks             #=> (Track array)
-#
-# # Search by category
-# party = RSpotify::Category.find('party')
-# party.playlists #=> (Playlist array)
-# categories = RSpotify::Category.list # See all available categories
-#
-# # Access featured content from Spotify's Browse tab
-# featured_playlists = RSpotify::Playlist.browse_featured(country: 'US')
-# new_releases = RSpotify::Album.new_releases(country: 'ES')
