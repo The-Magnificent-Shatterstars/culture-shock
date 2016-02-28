@@ -3,8 +3,8 @@ class RecipesPlaylistsController < ApplicationController
     playlist = Playlist.new(params["genre"])
     render json: playlist.random_playlist
 
-    recipe = Recipe.new(param["genre"])
-    render json: recipe.random_recipe
+    # recipe = Recipe.new(params["genre"])
+    # render json: recipe.random_recipe
   end
 
   def index

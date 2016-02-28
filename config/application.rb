@@ -5,6 +5,8 @@ require 'rails/all'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+RSpotify::authenticate("bd39e68d741a411085a81d155f1a14f9", "fd2f75a53744417598e2e69030c2986d")
+##{ENV["SPOTIFY_KEY"]}
 
 module CultureShock
   class Application < Rails::Application
