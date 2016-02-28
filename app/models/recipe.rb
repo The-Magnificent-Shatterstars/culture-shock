@@ -21,4 +21,8 @@ attr_reader :response
     random_recipe["source_url"]
   end
 
+  # def as_json(options=nil)
+  #   {}
+  # end
+  #
 end

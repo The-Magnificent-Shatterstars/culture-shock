@@ -1,4 +1,4 @@
-# require 'json'
+require 'byebug'
 require 'httparty'
 class Playlist
   def initialize(search_term)
@@ -13,7 +13,7 @@ class Playlist
   end
 
   # Would this sort of structure work to filter through the "total" for short or long playlists?
-  def random_playlist(length=nil)
+  def random_playlist(length)
     get_playlists
     if length == "short"
       short_playlists = playlists.select {|a| a["total"] < 100 }
@@ -27,11 +27,14 @@ class Playlist
     end
   end
 
-
+    # def total
+    #   random_playlist["owner"]["tracks"]["total"]
+    # end
 
   # def get_playlist_image
   # end
 end
 
+
 # newlist = Playlist.new("kpop")
-# puts newlist.playlist_list
+# puts newlist.get_playlists
