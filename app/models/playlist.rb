@@ -16,10 +16,10 @@ class Playlist
   def random_playlist(length)
     get_playlists
     if length == "short"
-      short_playlists = playlists.select {|a| a["total"] < 100 }
+      short_playlists = playlists.select {|a| a["tracks"]["total"] < 100 }
       short_playlists.sample
     elsif length == "long"
-      long_playlists = playlists.select {|a| a["total"] > 100 }
+      long_playlists = playlists.select {|a| a["tracks"]["total"] > 100 }
       long_playlists.sample
     else
       playlists = @search_term["playlists"]["items"]
